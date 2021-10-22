@@ -7,7 +7,6 @@ const useSearchAction = (fields, data) => {
   const [results, setResults] = useState(normalizeData(fields, data));
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const _fields = fields.map((f) => f.key);
-  console.log(_fields, data);
   function find(items, text) {
     text = text.toLowerCase().split(" ");
     return items.filter((item) => {
