@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="/assets/ez-react-table.png" width="150" title="logo">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/ez-react-table.png" width="150" title="logo">
 </p>
   <h1 align="center" >EZ React Table</h1>
   <p align="center"><i>🔋 Batteries included table component that just works.</i></p>
@@ -17,7 +17,7 @@
 ## Screenshots
 
 <p>
-  <img src="/assets/screenshot.png" width="350" title="logo">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot.png" width="350" title="logo">
 </p>
 
   
