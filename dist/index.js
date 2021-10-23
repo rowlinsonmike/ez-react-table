@@ -98,7 +98,7 @@ var EzReactTable = function EzReactTable(_ref) {
       searchInputProps = _useSearchAction2[0],
       _data = _useSearchAction2[1];
 
-  var _useState = (0, _react.useState)(defaultSort),
+  var _useState = (0, _react.useState)(defaultSort ? [defaultSort, "descend"] : null),
       _useState2 = _slicedToArray(_useState, 2),
       sort = _useState2[0],
       setSort = _useState2[1];

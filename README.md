@@ -32,6 +32,7 @@ Install ez-react-table with npm
     
 ## Usage/Examples
 
+Simple 
 ```javascript
 import EzReactTable from "ez-react-table";
 
@@ -48,18 +49,7 @@ function App() {
               title: "Last",
               width: 200,
               key: "last",
-            },
-            {
-              title: "Actions",
-              width: 100,
-              key: "action",
-              center: true,
-              render: (value, object) => (
-                <button onClick={() => alert(JSON.stringify(object))}>
-                  View
-                </button>
-              ),
-            },
+            }
           ]}
           data={[
             { first: "Michael", last: "Myers" },
@@ -71,7 +61,70 @@ function App() {
 }
 ```
 
-  
+Kitchen Sink
+```javascript
+import { useState } from "react";
+import EzReactTable from "ez-react-table";
+
+// fake data
+const data = Array.from(Array(20))
+  .map((i) => [
+    { first: "Michael", last: "Myers" },
+    { first: "Laurie", last: "Strode" },
+    { first: "Samuel", last: "Loomis" },
+  ])
+  .reduce((a, c) => [...a, ...c], []);
+
+// define columns
+const cols = [
+  {
+    title: "First",
+    width: 200,
+    key: "first",
+  },
+  {
+    title: "Last",
+    width: 200,
+    key: "last",
+  },
+  {
+    title: "Actions",
+    width: 100,
+    key: "action",
+    center: true,
+    render: (value, object) => (
+      <button onClick={() => alert(JSON.stringify(object))}>View</button>
+    ),
+  },
+];
+
+function App() {
+  const [_data, setData] = useState(data);
+  const update = async () => {
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve();
+      }, 2000)
+    );
+    setData([..._data, { first: "Leigh", last: "Brackett" }]);
+  };
+  return (
+    <div className="App">
+      <EzReactTable
+        tableHeight={500}
+        rowHeight={40}
+        defaultSort="first"
+        accentColor="#edaf1f"
+        update={update}
+        darkMode
+        cols={cols}
+        data={_data}
+      />
+    </div>
+  );
+}
+```
+
 ## Configuration
 
 ### Component properties

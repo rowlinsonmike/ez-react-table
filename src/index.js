@@ -25,7 +25,9 @@ const EzReactTable = ({
   darkMode,
 }) => {
   const [searchInputProps, _data] = useSearchAction(cols, data);
-  const [sort, setSort] = useState(defaultSort);
+  const [sort, setSort] = useState(
+    defaultSort ? [defaultSort, "descend"] : null
+  );
   let _dataset = sortData(_data, sort, setSort);
   return (
     <>
