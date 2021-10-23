@@ -5,6 +5,20 @@ const config =
   ({ config }) =>
     config[attr];
 
+const getBackgroundColor = ({ darkMode }) => {
+  if (darkMode) {
+    return "color: #171a22;";
+  } else {
+    return "color: #fff;";
+  }
+};
+const getFontColor = ({ darkMode }) => {
+  if (darkMode) {
+    return "color: #fff;";
+  } else {
+    return "color: #171a22;";
+  }
+};
 export default createGlobalStyle`
     *{
         box-sizing: border-box;
@@ -16,6 +30,7 @@ export default createGlobalStyle`
         box-shadow: var(--shadow);
         border-radius: 7px;
         width: ${config("tableWidth")}px;
+        background: ${getBackgroundColor};
     }
     .ezr-header{
         display: flex;
@@ -120,6 +135,7 @@ export default createGlobalStyle`
             align-items: center;
             font-weight: bold;
             padding-left: 10px;
+            ${getFontColor}
             & > *+*{
                 margin-left: 5px;
             }
@@ -136,6 +152,9 @@ export default createGlobalStyle`
         cursor: pointer;
         align-items: center;
         transition: 0.3s;
+        .ezr-row-cell{
+            ${getFontColor}
+        }
     }
     .ezr-footer{
         border-top: 1px solid #eee;

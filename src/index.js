@@ -22,6 +22,7 @@ const EzReactTable = ({
   update,
   defaultSort,
   accentColor,
+  darkMode,
 }) => {
   const [searchInputProps, _data] = useSearchAction(cols, data);
   const [sort, setSort] = useState(defaultSort);
@@ -32,6 +33,7 @@ const EzReactTable = ({
         config={{
           tableWidth: cols.reduce((a, c) => a + c.width, 0) + 50,
           accentColor,
+          darkMode,
         }}
       />
       <div className="ezr-table">
@@ -167,6 +169,7 @@ EzReactTable.defaultProps = {
   update: null,
   defaultSort: null,
   accentColor: "#b8b8b8",
+  darkMode: false,
 };
 
 EzReactTable.propTypes = {
@@ -177,6 +180,7 @@ EzReactTable.propTypes = {
   update: PropTypes.func,
   defaultSort: PropTypes.string,
   accentColor: PropTypes.string,
+  darkMode: PropTypes.bool,
 };
 
 export default EzReactTable;

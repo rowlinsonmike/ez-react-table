@@ -84,6 +84,7 @@ function App() {
 | `update` | `function` | `null` | function call to update data |
 | `defaultSort` | `string` | `null` | default column sort |
 | `accentColor` | `string` | `#b8b8b8` | color for table accents |
+| `darkMode` | `bool` | `false` | toggle dark mode, default is false |
 
 ### Column Configuration
 | Property | Type     | Description                |
