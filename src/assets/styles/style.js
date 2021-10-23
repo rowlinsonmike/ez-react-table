@@ -100,6 +100,9 @@ export default createGlobalStyle`
             line-height: 2rem;
         }
     }
+    .ezr-search-icon{
+        fill: #1e2026;
+    }
     .ezr-refresh{
         position: relative;
         display: flex;
