@@ -7,16 +7,16 @@ const config =
 
 const getBackgroundColor = ({ config: { darkMode } }) => {
   if (darkMode) {
-    return "background: #171a22;";
+    return "background: #1e2026;";
   } else {
     return "background: #fff;";
   }
 };
-const getFontColor = ({ darkMode }) => {
+const getFontColor = ({ config: { darkMode } }) => {
   if (darkMode) {
     return "color: #fff;";
   } else {
-    return "color: #171a22;";
+    return "color: #1e2026;";
   }
 };
 export default createGlobalStyle`
@@ -59,10 +59,12 @@ export default createGlobalStyle`
         overflow: hidden;
         box-shadow: var(--shadow);
         height: 35px;
+        background: #fff;
         input {
             width: calc(100% - 45px);
             border: none;
             outline: none;
+            background: transparent;
             height: 100%;
             padding-left: 10px;
             line-height: 30px;
