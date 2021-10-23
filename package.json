@@ -1,6 +1,6 @@
 {
   "name": "ez-react-table",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "babel": {
     "presets": [
       "@babel/preset-react"
