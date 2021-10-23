@@ -90,7 +90,7 @@ export default createGlobalStyle`
             border: none;
             outline: none;
             background: transparent;
-            top: 5px;
+            top: 0;
             bottom: 0;
             right: 5px;
             height: 100%;
