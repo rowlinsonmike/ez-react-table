@@ -37,24 +37,35 @@ import EzReactTable from "ez-react-table";
 function App() {
   return <div>
     <EzReactTable
-      cols={[
-        {
-          title: "First",
-          width: 200,
-          key: "first",
-        },
-        {
-          title: "Last",
-          width: 300,
-          key: "last",
-        },
-      ]}
-      data={[
-        { first: "Michael", last: "Myers" },
-        { first: "Laurie", last: "Strode" },
-        { first: "Samuel", last: "Loomis" },
-      ]}
-    />
+          cols={[
+            {
+              title: "First",
+              width: 200,
+              key: "first",
+            },
+            {
+              title: "Last",
+              width: 200,
+              key: "last",
+            },
+            {
+              title: "Actions",
+              width: 100,
+              key: "action",
+              center: true,
+              render: (value, object) => (
+                <button onClick={() => alert(JSON.stringify(object))}>
+                  View
+                </button>
+              ),
+            },
+          ]}
+          data={[
+            { first: "Michael", last: "Myers" },
+            { first: "Laurie", last: "Strode" },
+            { first: "Samuel", last: "Loomis" },
+          ]}
+        />
   </div>
 }
 ```
