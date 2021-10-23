@@ -13,6 +13,7 @@
 - 🕵 search
 - 🤯 simple
 - 🤩 style
+- 🌔 dark mode
   
 ## Screenshots
 

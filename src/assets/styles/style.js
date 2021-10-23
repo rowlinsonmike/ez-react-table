@@ -19,6 +19,21 @@ const getFontColor = ({ config: { darkMode } }) => {
     return "color: #1e2026;";
   }
 };
+const getScrollBarColor = ({ config: { darkMode } }) => {
+  if (darkMode) {
+    return `
+    .simplebar-scrollbar::before {
+        background-color: #fff !important;
+    }
+    `;
+  } else {
+    return `
+    .simplebar-scrollbar::before {
+        background-color: #1e2026 !important;
+    }
+    `;
+  }
+};
 export default createGlobalStyle`
     *{
         box-sizing: border-box;
@@ -26,6 +41,7 @@ export default createGlobalStyle`
     svg{
         fill: ${config("accentColor")};
     }
+    ${getScrollBarColor}
     .ezr-table{
         box-shadow: var(--shadow);
         border-radius: 7px;
