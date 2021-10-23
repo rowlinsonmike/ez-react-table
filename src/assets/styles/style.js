@@ -7,9 +7,9 @@ const config =
 
 const getBackgroundColor = ({ config: { darkMode } }) => {
   if (darkMode) {
-    return "color: #171a22;";
+    return "background: #171a22;";
   } else {
-    return "color: #fff;";
+    return "background: #fff;";
   }
 };
 const getFontColor = ({ darkMode }) => {
@@ -30,7 +30,7 @@ export default createGlobalStyle`
         box-shadow: var(--shadow);
         border-radius: 7px;
         width: ${config("tableWidth")}px;
-        background: ${getBackgroundColor};
+        ${getBackgroundColor}
     }
     .ezr-header{
         display: flex;
