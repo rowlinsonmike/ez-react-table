@@ -5,7 +5,7 @@ const config =
   ({ config }) =>
     config[attr];
 
-const getBackgroundColor = ({ darkMode }) => {
+const getBackgroundColor = ({ config: { darkMode } }) => {
   if (darkMode) {
     return "color: #171a22;";
   } else {

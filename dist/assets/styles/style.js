@@ -21,7 +21,7 @@ var config = function config(attr) {
 };
 
 var getBackgroundColor = function getBackgroundColor(_ref2) {
-  var darkMode = _ref2.darkMode;
+  var darkMode = _ref2.config.darkMode;
 
   if (darkMode) {
     return "color: #171a22;";
