@@ -42,8 +42,6 @@ var useSearchAction = function useSearchAction(fields, data) {
     return f.key;
   });
 
-  console.log(_fields, data);
-
   function find(items, text) {
     text = text.toLowerCase().split(" ");
     return items.filter(function (item) {

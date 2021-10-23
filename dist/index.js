@@ -90,7 +90,8 @@ var EzReactTable = function EzReactTable(_ref) {
       tableHeight = _ref.tableHeight,
       update = _ref.update,
       defaultSort = _ref.defaultSort,
-      accentColor = _ref.accentColor;
+      accentColor = _ref.accentColor,
+      darkMode = _ref.darkMode;
 
   var _useSearchAction = (0, _useSearchAction3["default"])(cols, data),
       _useSearchAction2 = _slicedToArray(_useSearchAction, 2),
@@ -109,7 +110,8 @@ var EzReactTable = function EzReactTable(_ref) {
       tableWidth: cols.reduce(function (a, c) {
         return a + c.width;
       }, 0) + 50,
-      accentColor: accentColor
+      accentColor: accentColor,
+      darkMode: darkMode
     }
   }), /*#__PURE__*/_react["default"].createElement("div", {
     className: "ezr-table"
@@ -224,7 +226,8 @@ EzReactTable.defaultProps = {
   tableHeight: 300,
   update: null,
   defaultSort: null,
-  accentColor: "#b8b8b8"
+  accentColor: "#b8b8b8",
+  darkMode: false
 };
 EzReactTable.propTypes = {
   cols: _propTypes["default"].array,
@@ -233,7 +236,8 @@ EzReactTable.propTypes = {
   tableHeight: _propTypes["default"].number,
   update: _propTypes["default"].func,
   defaultSort: _propTypes["default"].string,
-  accentColor: _propTypes["default"].string
+  accentColor: _propTypes["default"].string,
+  darkMode: _propTypes["default"].bool
 };
 var _default = EzReactTable;
 exports["default"] = _default;
