@@ -4,16 +4,18 @@
 </p>
   <h1 align="center" >EZ React Table</h1>
   <p align="center"><i>🔋 Batteries included table component that just works.</i></p>
+  <p align="center"><i>⚡️ Try out the <a href="https://rowlinsonmike.github.io/ez-react-table/?path=/story/ez-react-table--demo" target="_blank">Demo</a>! ⚡️</i></p>
 
 ## Features
 
-- 💻 virtualized
-- 🔽 sorting
-- 🔃 refresh
-- 🕵 search
-- 🤯 simple
-- 🤩 style
+- 💻 virtualized rows
+- 🔽 built in sorting 
+- 🔃 built in refresh button
+- 🕵 global search
+- 🤯 simple implementation 
+- 🤩 beatuiful style
 - 🌔 dark mode
+- 🌊 overflow management with tool tips
   
 ## Screenshots
 

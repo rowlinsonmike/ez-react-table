@@ -1,9 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import "./vars.css";
-const config =
-  (attr) =>
-  ({ config }) =>
-    config[attr];
+const config = (attr) => ({ config }) => config[attr];
 
 const getBackgroundColor = ({ config: { darkMode } }) => {
   if (darkMode) {
