@@ -89,6 +89,7 @@ var EzReactTable = function EzReactTable(_ref) {
       rowHeight = _ref.rowHeight,
       tableHeight = _ref.tableHeight,
       update = _ref.update,
+      infiniteLoad = _ref.infiniteLoad,
       defaultSort = _ref.defaultSort,
       accentColor = _ref.accentColor,
       darkMode = _ref.darkMode;
@@ -102,6 +103,15 @@ var EzReactTable = function EzReactTable(_ref) {
       _useState2 = _slicedToArray(_useState, 2),
       sort = _useState2[0],
       setSort = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      load = _useState4[0],
+      setLoad = _useState4[1];
+
+  (0, _react.useEffect)(function () {
+    setLoad(false);
+  }, [data]);
 
   var _dataset = (0, _sortData["default"])(_data, sort, setSort);
 
@@ -163,7 +173,7 @@ var EzReactTable = function EzReactTable(_ref) {
       className: "ezr-col-header-cell",
       onClick: function onClick() {
         if (sort && sort[0] === c.key) {
-          setSort([c.key, sort[1] === "ascend" ? "descend" : "ascend"]);
+          setSort([c.key, sort[1] === "descend" ? "ascend" : "descend"]);
         } else {
           setSort([c.key, "descend"]);
         }
@@ -190,11 +200,23 @@ var EzReactTable = function EzReactTable(_ref) {
       outerRef: scrollableNodeRef,
       height: tableHeight,
       width: "100%",
+      onItemsRendered: function onItemsRendered(_ref3) {
+        var overscanStartIndex = _ref3.overscanStartIndex,
+            overscanStopIndex = _ref3.overscanStopIndex,
+            visibleStartIndex = _ref3.visibleStartIndex,
+            visibleStopIndex = _ref3.visibleStopIndex;
+
+        // All index params are numbers.
+        if (visibleStopIndex === _data.length - 1 && !load && infiniteLoad && searchInputProps.value === "") {
+          infiniteLoad(visibleStopIndex);
+          setLoad(true);
+        }
+      },
       itemCount: _dataset.length,
       itemSize: rowHeight
-    }, function (_ref3) {
-      var index = _ref3.index,
-          style = _ref3.style;
+    }, function (_ref4) {
+      var index = _ref4.index,
+          style = _ref4.style;
       var item = _dataset[index];
       return /*#__PURE__*/_react["default"].createElement("div", {
         style: _objectSpread({}, style),
@@ -225,6 +247,7 @@ EzReactTable.defaultProps = {
   rowHeight: 50,
   tableHeight: 300,
   update: null,
+  infiniteLoad: null,
   defaultSort: null,
   accentColor: "#b8b8b8",
   darkMode: false
@@ -235,6 +258,7 @@ EzReactTable.propTypes = {
   rowHeight: _propTypes["default"].number,
   tableHeight: _propTypes["default"].number,
   update: _propTypes["default"].func,
+  infiniteLoad: _propTypes["default"].func,
   defaultSort: _propTypes["default"].string,
   accentColor: _propTypes["default"].string,
   darkMode: _propTypes["default"].bool

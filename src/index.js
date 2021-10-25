@@ -20,6 +20,7 @@ const EzReactTable = ({
   rowHeight,
   tableHeight,
   update,
+  infiniteLoad,
   defaultSort,
   accentColor,
   darkMode,
@@ -28,6 +29,10 @@ const EzReactTable = ({
   const [sort, setSort] = useState(
     defaultSort ? [defaultSort, "descend"] : null
   );
+  const [load, setLoad] = useState(false);
+  useEffect(() => {
+    setLoad(false);
+  }, [data]);
   let _dataset = sortData(_data, sort, setSort);
   return (
     <>
@@ -87,7 +92,7 @@ const EzReactTable = ({
                     if (sort && sort[0] === c.key) {
                       setSort([
                         c.key,
-                        sort[1] === "ascend" ? "descend" : "ascend",
+                        sort[1] === "descend" ? "ascend" : "descend",
                       ]);
                     } else {
                       setSort([c.key, "descend"]);
@@ -119,6 +124,23 @@ const EzReactTable = ({
                     outerRef={scrollableNodeRef}
                     height={tableHeight}
                     width="100%"
+                    onItemsRendered={({
+                      overscanStartIndex,
+                      overscanStopIndex,
+                      visibleStartIndex,
+                      visibleStopIndex,
+                    }) => {
+                      // All index params are numbers.
+                      if (
+                        visibleStopIndex === _data.length - 1 &&
+                        !load &&
+                        infiniteLoad &&
+                        searchInputProps.value === ""
+                      ) {
+                        infiniteLoad(visibleStopIndex);
+                        setLoad(true);
+                      }
+                    }}
                     itemCount={_dataset.length}
                     itemSize={rowHeight}
                   >
@@ -169,6 +191,7 @@ EzReactTable.defaultProps = {
   rowHeight: 50,
   tableHeight: 300,
   update: null,
+  infiniteLoad: null,
   defaultSort: null,
   accentColor: "#b8b8b8",
   darkMode: false,
@@ -180,6 +203,7 @@ EzReactTable.propTypes = {
   rowHeight: PropTypes.number,
   tableHeight: PropTypes.number,
   update: PropTypes.func,
+  infiniteLoad: PropTypes.func,
   defaultSort: PropTypes.string,
   accentColor: PropTypes.string,
   darkMode: PropTypes.bool,

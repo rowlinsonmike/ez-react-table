@@ -27,18 +27,6 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var RefreshSvg = function RefreshSvg(props) {
-  return /*#__PURE__*/_react["default"].createElement("svg", props, /*#__PURE__*/_react["default"].createElement("path", {
-    d: "M13.5 2C8.212 2 3.851 5.914 3.123 11H0l4 5.917L8 11H5.153c.711-3.972 4.174-7 8.347-7 4.687 0 8.5 3.813 8.5 8.5S18.187 21 13.5 21c-3.015 0-5.662-1.583-7.171-3.957l-1.2 1.775C7.045 21.354 10.077 23 13.5 23 19.297 23 24 18.298 24 12.5S19.297 2 13.5 2z"
-  }));
-};
-
-RefreshSvg.defaultProps = {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: "24",
-  height: "24"
-};
-
 function Refresh(_ref) {
   var update = _ref.update,
       data = _ref.data;
@@ -63,7 +51,8 @@ function Refresh(_ref) {
     disabled: loading
   }, update ? {
     onClick: updateHandler
-  } : {}), /*#__PURE__*/_react["default"].createElement(RefreshSvg, {
+  } : {}), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "loader",
     style: {
       animationPlayState: loading ? "running" : "paused"
     }

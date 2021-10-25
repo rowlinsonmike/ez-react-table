@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import EzReactTable from "ez-react-table";
 
 import data from "./assets/data.json";
@@ -41,7 +41,11 @@ export default {
 };
 
 const Template = (props) => {
-  return <EzReactTable cols={cols} data={data} {...props} />;
+  const [_data,setData] = useState([...data]) 
+  const infiniteLoad = () => setData([..._data, ...data])
+  return <EzReactTable update={() => {
+    setTimeout(() => setData([...data]),2000)
+  }} infiniteLoad={infiniteLoad} cols={cols} data={_data} {...props} />;
 };
 
 export const Demo = Template.bind({});

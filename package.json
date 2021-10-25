@@ -16,9 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files && rm -rf dist/stories --ignore src/stories",
-    "predeploy": "npm run build-storybook",
-    "deploy-storybook": "gh-pages -d storybook-static",
-    "build-storybook": "build-storybook"
+    "update-package": "npm version patch && npm publish"
   },
   "keywords": [
     "react",

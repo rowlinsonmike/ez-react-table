@@ -16,6 +16,7 @@
 - 🤩 beatuiful style
 - 🌔 dark mode
 - 🌊 overflow management with tool tips
+- ♾️ infinite loading
   
 ## Screenshots
 
@@ -138,9 +139,25 @@ function App() {
 | `rowHeight` | `number` | `50` | height of rows in pixels |
 | `tableHeight` | `number` | `300` | height of table in pixels |
 | `update` | `function` | `null` | function call to update data |
+| `infiniteLoad` | `function` | `null` | function call to load more items |
 | `defaultSort` | `string` | `null` | default column sort |
 | `accentColor` | `string` | `#b8b8b8` | color for table accents |
 | `darkMode` | `bool` | `false` | toggle dark mode, default is false |
+
+
+### Component infiniteLoad function
+| Argument | Description                |
+| :-------- |  :------------------------- |
+| `visibleStopIndex` | index of last loaded item |
+
+function that updates passed `data` prop to EzReactTable with more data
+
+```javascript
+(visibleStopIndex) => {...}
+```
+### Component update function
+
+function that updates passed `data` prop to EzReactTable
 
 ### Column Configuration
 | Property | Type     | Description                |
