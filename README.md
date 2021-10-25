@@ -146,7 +146,7 @@ function App() {
 | `darkMode` | `bool` | `false` | toggle dark mode, default is false |
 
 
-### Component infiniteLoad function
+### Component `infiniteLoad` function
 | Argument | Description                |
 | :-------- |  :------------------------- |
 | `visibleStopIndex` | index of last loaded item |
@@ -156,7 +156,7 @@ function that updates passed `data` prop to EzReactTable with more data
 ```javascript
 (visibleStopIndex) => {...}
 ```
-### Component update function
+### Component `update` function
 
 function that updates passed `data` prop to EzReactTable
 
