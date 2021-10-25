@@ -37,6 +37,11 @@ export default {
         type: 'text'
       }
     },
+    title: {
+      control: {
+        type: 'text'
+      }
+    },
   },
 };
 
@@ -54,5 +59,6 @@ Demo.args = {
   accentColor: "#b8b8b8",
   rowHeight: 50,
   tableHeight: 300,
-  defaultSort: 'website'
+  defaultSort: 'website',
+  title: ""
 }

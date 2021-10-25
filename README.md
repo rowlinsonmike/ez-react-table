@@ -144,6 +144,7 @@ function App() {
 | `defaultSort` | `string` | `null` | default column sort |
 | `accentColor` | `string` | `#b8b8b8` | color for table accents |
 | `darkMode` | `bool` | `false` | toggle dark mode, default is false |
+| `title` | `func or string` | `null` | create title for table, can be either a string or a component |
 
 
 ### Component `infiniteLoad` function

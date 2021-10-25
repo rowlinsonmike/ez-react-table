@@ -29,6 +29,8 @@ var _RowCell = _interopRequireDefault(require("./components/RowCell"));
 
 var _Refresh = _interopRequireDefault(require("./components/Refresh"));
 
+var _Title = _interopRequireDefault(require("./components/Title"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -92,7 +94,8 @@ var EzReactTable = function EzReactTable(_ref) {
       infiniteLoad = _ref.infiniteLoad,
       defaultSort = _ref.defaultSort,
       accentColor = _ref.accentColor,
-      darkMode = _ref.darkMode;
+      darkMode = _ref.darkMode,
+      title = _ref.title;
 
   var _useSearchAction = (0, _useSearchAction3["default"])(cols, data),
       _useSearchAction2 = _slicedToArray(_useSearchAction, 2),
@@ -125,7 +128,9 @@ var EzReactTable = function EzReactTable(_ref) {
     }
   }), /*#__PURE__*/_react["default"].createElement("div", {
     className: "ezr-table"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement(_Title["default"], {
+    title: title
+  }), /*#__PURE__*/_react["default"].createElement("div", {
     className: "ezr-header"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "ezr-header-left"
@@ -250,7 +255,8 @@ EzReactTable.defaultProps = {
   infiniteLoad: null,
   defaultSort: null,
   accentColor: "#b8b8b8",
-  darkMode: false
+  darkMode: false,
+  title: null
 };
 EzReactTable.propTypes = {
   cols: _propTypes["default"].array,
@@ -261,7 +267,8 @@ EzReactTable.propTypes = {
   infiniteLoad: _propTypes["default"].func,
   defaultSort: _propTypes["default"].string,
   accentColor: _propTypes["default"].string,
-  darkMode: _propTypes["default"].bool
+  darkMode: _propTypes["default"].bool,
+  title: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].func])
 };
 var _default = EzReactTable;
 exports["default"] = _default;

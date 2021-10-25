@@ -13,7 +13,7 @@ import { ReactComponent as EraserSvg } from "./assets/svg/eraser.svg";
 import Sort from "./components/Sort";
 import RowCell from "./components/RowCell";
 import Refresh from "./components/Refresh";
-
+import Title from "./components/Title";
 const EzReactTable = ({
   data,
   cols,
@@ -24,6 +24,7 @@ const EzReactTable = ({
   defaultSort,
   accentColor,
   darkMode,
+  title,
 }) => {
   const [searchInputProps, _data] = useSearchAction(cols, data);
   const [sort, setSort] = useState(
@@ -44,6 +45,7 @@ const EzReactTable = ({
         }}
       />
       <div className="ezr-table">
+        <Title title={title} />
         <div className="ezr-header">
           <div className="ezr-header-left">
             <div className="ezr-search">
@@ -195,6 +197,7 @@ EzReactTable.defaultProps = {
   defaultSort: null,
   accentColor: "#b8b8b8",
   darkMode: false,
+  title: null,
 };
 
 EzReactTable.propTypes = {
@@ -207,6 +210,7 @@ EzReactTable.propTypes = {
   defaultSort: PropTypes.string,
   accentColor: PropTypes.string,
   darkMode: PropTypes.bool,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 export default EzReactTable;
