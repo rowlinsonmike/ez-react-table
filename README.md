@@ -20,8 +20,9 @@
   
 ## Screenshots
 
-<p>
-  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot.png" width="350" title="logo">
+<p float="left">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot-1.png" width="350" title="screenshot 1">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot-2.png" width="350" title="screenshot 2">
 </p>
 
   
