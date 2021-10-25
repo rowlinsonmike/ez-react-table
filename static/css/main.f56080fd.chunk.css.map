@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.f56080fd.chunk.css","sources":["webpack:///../dist/assets/styles/vars.css"],"sourcesContent":[":root{\n    --shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,\n    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;\n    --font-color-alt: #5f5f5f;\n    --secondary-color: #b8b8b8;\n}\n\n"],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;;","sourceRoot":""}
