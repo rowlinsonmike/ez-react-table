@@ -68,6 +68,11 @@ export default createGlobalStyle`
         width: ${config("tableWidth")}px;
         ${getBackgroundColor}
     }
+    .ezr-title{
+      .ezr-title--text{
+        ${getFontColor}
+      }
+    }
     .ezr-header{
         display: flex;
         padding-bottom: 15px;
@@ -116,7 +121,6 @@ export default createGlobalStyle`
             position: absolute;
             width: 30px;
             height: 30px;
-            line-height: 2rem;
         }
     }
     .ezr-search-icon{
