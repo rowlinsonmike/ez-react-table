@@ -15,6 +15,8 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -26,6 +28,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var RefreshSvg = function RefreshSvg(props) {
+  return /*#__PURE__*/_react["default"].createElement("svg", props, /*#__PURE__*/_react["default"].createElement("path", {
+    d: "M13.5 2C8.212 2 3.851 5.914 3.123 11H0l4 5.917L8 11H5.153c.711-3.972 4.174-7 8.347-7 4.687 0 8.5 3.813 8.5 8.5S18.187 21 13.5 21c-3.015 0-5.662-1.583-7.171-3.957l-1.2 1.775C7.045 21.354 10.077 23 13.5 23 19.297 23 24 18.298 24 12.5S19.297 2 13.5 2z"
+  }));
+};
+
+RefreshSvg.defaultProps = {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "24",
+  height: "24"
+};
 
 function Refresh(_ref) {
   var update = _ref.update,
@@ -51,10 +65,12 @@ function Refresh(_ref) {
     disabled: loading
   }, update ? {
     onClick: updateHandler
-  } : {}), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "loader",
+  } : {}), /*#__PURE__*/_react["default"].createElement(RefreshSvg, _defineProperty({
+    className: "ezr-refresh--icon",
     style: {
-      animationPlayState: loading ? "running" : "paused"
+      transform: "scale(70%)"
     }
-  })));
+  }, "style", loading ? {
+    animation: "spin 5s linear infinite backwards"
+  } : {}))));
 }
