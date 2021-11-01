@@ -20,6 +20,17 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var sortMap = {
+  "boolean": function boolean(data, key, direction) {
+    if (direction === "descend") {
+      return data.sort(function (x) {
+        return x.__proto__[key] ? -1 : 1;
+      });
+    } else {
+      return data.sort(function (x) {
+        return x.__proto__[key] ? 1 : -1;
+      });
+    }
+  },
   string: function string(data, key, direction) {
     if (direction === "descend") {
       return data.sort(function (a, b) {
@@ -47,7 +58,7 @@ var sortMap = {
       });
     }
   },
-  number: function number(data, direction) {
+  number: function number(data, key, direction) {
     if (direction === "descend") {
       return data.sort(function (a, b) {
         return b[sort] - a[sort];
@@ -69,8 +80,8 @@ var sortData = function sortData(data, sort, setSort) {
       key = _sort[0],
       direction = _sort[1];
 
-  if (sortMap[_typeof(data[0][key])]) {
-    return sortMap[_typeof(data[0][key])](data, key, direction);
+  if (sortMap[_typeof(data[0].__proto__[key])]) {
+    return sortMap[_typeof(data[0].__proto__[key])](data, key, direction);
   } else {
     //reset sort if column is not sortable
     setSort(null);

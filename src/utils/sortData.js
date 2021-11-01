@@ -1,4 +1,15 @@
 const sortMap = {
+  boolean: (data, key, direction) => {
+    if (direction === "descend") {
+      return data.sort(function (x) {
+        return x.__proto__[key] ? -1 : 1;
+      });
+    } else {
+      return data.sort(function (x) {
+        return x.__proto__[key] ? 1 : -1;
+      });
+    }
+  },
   string: (data, key, direction) => {
     if (direction === "descend") {
       return data.sort(function (a, b) {
@@ -23,7 +34,7 @@ const sortMap = {
     }
   },
 
-  number: (data, direction) => {
+  number: (data, key, direction) => {
     if (direction === "descend") {
       return data.sort(function (a, b) {
         return b[sort] - a[sort];
@@ -41,8 +52,8 @@ const sortData = (data, sort, setSort) => {
     return data;
   }
   let [key, direction] = sort;
-  if (sortMap[typeof data[0][key]]) {
-    return sortMap[typeof data[0][key]](data, key, direction);
+  if (sortMap[typeof data[0].__proto__[key]]) {
+    return sortMap[typeof data[0].__proto__[key]](data, key, direction);
   } else {
     //reset sort if column is not sortable
     setSort(null);

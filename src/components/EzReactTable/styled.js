@@ -20,6 +20,15 @@ const getColor = (darkMode) => {
 };
 
 export default styled.div`
+  /* keyframes */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
   /* general */
   * {
     box-sizing: border-box;
@@ -51,14 +60,41 @@ export default styled.div`
       cursor: pointer;
     }
     .ezr-header-left,
-    .ezr-header-right {
+    .ezr-toolbar {
       width: 50%;
     }
-    .ezr-header-right {
+    .ezr-toolbar {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       padding-right: 10px;
+      & > * + * {
+        margin-left: 5px;
+      }
+      .ezr-toolbar--button {
+        box-shadow: ${({ darkMode }) =>
+              darkMode ? "rgba(0, 0, 0, 0.12)" : "rgba(50, 50, 93, 0.25)"}
+            0px 1px 3px,
+          ${({ darkMode }) =>
+              darkMode ? "rgba(0, 0, 0, 0.24)" : "rgba(255, 255, 255, 0.3)"}
+            0px 1px 2px;
+        border: none;
+        outline: none;
+        background: transparent;
+        top: 10px;
+        bottom: 0;
+        right: 5px;
+        height: 30px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7px;
+        i {
+        }
+        svg {
+        }
+      }
     }
   }
 
@@ -70,10 +106,10 @@ export default styled.div`
     margin: 10px 0 0 10px;
     overflow: hidden;
     box-shadow: ${({ darkMode }) =>
-      darkMode ? "rgba(0, 0, 0, 0.12)" : "rgba(50, 50, 93, 0.25)"}
+          darkMode ? "rgba(0, 0, 0, 0.12)" : "rgba(50, 50, 93, 0.25)"}
         0px 1px 3px,
       ${({ darkMode }) =>
-        darkMode ? "rgba(0, 0, 0, 0.24)" : "rgba(255, 255, 255, 0.3)"}
+          darkMode ? "rgba(0, 0, 0, 0.24)" : "rgba(255, 255, 255, 0.3)"}
         0px 1px 2px;
     height: 35px;
     background: #fff;
@@ -102,49 +138,6 @@ export default styled.div`
   }
   .ezr-search-icon {
     fill: #1e2026;
-  }
-  .ezr-refresh {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    @keyframes rotation {
-      100% {
-        transform: scale(80%) rotate(-360deg);
-      }
-    }
-    button {
-      box-shadow: ${({ darkMode }) =>
-        darkMode ? "rgba(0, 0, 0, 0.12)" : "rgba(50, 50, 93, 0.25)"}
-          0px 1px 3px,
-        ${({ darkMode }) =>
-          darkMode ? "rgba(0, 0, 0, 0.24)" : "rgba(255, 255, 255, 0.3)"}
-          0px 1px 2px;
-      border: none;
-      outline: none;
-      background: transparent;
-      top: 10px;
-      bottom: 0;
-      right: 5px;
-      height: 80%;
-      position: absolute;
-      line-height: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 7px;
-      transition: 300ms;
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(-360deg);
-          }
-        }
-      }
-    }
   }
   .ezr-count {
     display: flex;

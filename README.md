@@ -17,6 +17,7 @@
 - 🌔 dark mode
 - 🌊 overflow management with tool tips
 - ♾️ infinite loading
+- 🔨customizable toolbar 
   
 ## Screenshots
 
@@ -145,9 +146,30 @@ function App() {
 | `accentColor` | `string` | `#b8b8b8` | color for table accents |
 | `darkMode` | `bool` | `false` | toggle dark mode, default is false |
 | `title` | `func or string` | `null` | create title for table, can be either a string or a component |
+| `toolbar` | `array` | `[]` | define buttons for toolbar |
 
+### Component `toolbar` property
+
+the toolbar property defines the available toolbar buttons. It takes an array of objects, each object has the following properties:
+
+| Property | Description                |
+| :-------- |  :------------------------- |
+| `button` | React Component to render button, typically either an svg or font icon |
+| `props` | props to be passed to the button component, such as `onClick` property |
+
+
+```javascript
+//example
+[
+    {
+      button: () => <i style={{ color: "#06a847" }} className="las la-plus" />,
+      props: { onClick: () => alert("Add logic here to create a todo!") },
+    }
+]
+```
 
 ### Component `infiniteLoad` function
+
 | Argument | Description                |
 | :-------- |  :------------------------- |
 | `visibleStopIndex` | index of last loaded item |

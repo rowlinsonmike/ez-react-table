@@ -23,6 +23,8 @@ var _useSearchAction3 = _interopRequireDefault(require("../../assets/hooks/useSe
 
 var _sortData = _interopRequireDefault(require("../../utils/sortData"));
 
+var _ToolbarButton = _interopRequireDefault(require("./ToolbarButton"));
+
 var _Sort = _interopRequireDefault(require("../Sort"));
 
 var _RowCell = _interopRequireDefault(require("../RowCell"));
@@ -36,8 +38,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -56,6 +56,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 var SearchSvg = function SearchSvg(props) {
   return /*#__PURE__*/_react["default"].createElement("svg", props, /*#__PURE__*/_react["default"].createElement("path", {
@@ -85,6 +87,20 @@ EraserSvg.defaultProps = {
   clipRule: "evenodd"
 };
 
+var renderToolBar = function renderToolBar(toolbar) {
+  toolbar = toolbar || [];
+
+  var renderToolBarItem = function renderToolBarItem(item, idx) {
+    var Button = item === null || item === void 0 ? void 0 : item.button;
+    var props = item === null || item === void 0 ? void 0 : item.props;
+    return /*#__PURE__*/_react["default"].createElement(_ToolbarButton["default"], _extends({
+      key: idx
+    }, props), /*#__PURE__*/_react["default"].createElement(Button, null));
+  };
+
+  return toolbar.map(renderToolBarItem);
+};
+
 var EzReactTable = function EzReactTable(_ref) {
   var data = _ref.data,
       cols = _ref.cols,
@@ -95,7 +111,8 @@ var EzReactTable = function EzReactTable(_ref) {
       defaultSort = _ref.defaultSort,
       accentColor = _ref.accentColor,
       darkMode = _ref.darkMode,
-      title = _ref.title;
+      title = _ref.title,
+      toolbar = _ref.toolbar;
 
   var _useSearchAction = (0, _useSearchAction3["default"])(cols, data),
       _useSearchAction2 = _slicedToArray(_useSearchAction, 2),
@@ -130,6 +147,9 @@ var EzReactTable = function EzReactTable(_ref) {
     darkMode: darkMode,
     title: title
   };
+  var toolbarItems = (0, _react.useMemo)(function () {
+    return renderToolBar(toolbar);
+  }, []);
   return /*#__PURE__*/_react["default"].createElement(_styled["default"], _objectSpread(_objectSpread({}, passedProps), {}, {
     tableWidth: cols.reduce(function (a, c) {
       return a + c.width;
@@ -168,8 +188,8 @@ var EzReactTable = function EzReactTable(_ref) {
       transform: "scale(70%)"
     }
   })))), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "ezr-header-right"
-  }, /*#__PURE__*/_react["default"].createElement(_Refresh["default"], {
+    className: "ezr-toolbar"
+  }, toolbarItems, update && /*#__PURE__*/_react["default"].createElement(_Refresh["default"], {
     data: data,
     update: update
   }))), /*#__PURE__*/_react["default"].createElement("div", {
@@ -264,7 +284,8 @@ EzReactTable.defaultProps = {
   defaultSort: null,
   accentColor: "#b8b8b8",
   darkMode: false,
-  title: null
+  title: null,
+  toolbar: []
 };
 EzReactTable.propTypes = {
   cols: _propTypes["default"].array,
@@ -276,7 +297,8 @@ EzReactTable.propTypes = {
   defaultSort: _propTypes["default"].string,
   accentColor: _propTypes["default"].string,
   darkMode: _propTypes["default"].bool,
-  title: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].func])
+  title: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].func]),
+  toolbar: _propTypes["default"].array
 };
 var _default = EzReactTable;
 exports["default"] = _default;

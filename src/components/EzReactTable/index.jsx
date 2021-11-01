@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import PropTypes from "prop-types";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
@@ -8,11 +8,21 @@ import useSearchAction from "../../assets/hooks/useSearchAction";
 import sortData from "../../utils/sortData";
 import { ReactComponent as SearchSvg } from "../../assets/svg/search.svg";
 import { ReactComponent as EraserSvg } from "../../assets/svg/eraser.svg";
-
+import ToolbarButton from "./ToolbarButton";
 import Sort from "../Sort";
 import RowCell from "../RowCell";
 import Refresh from "../Refresh";
 import Title from "../Title";
+
+const renderToolBar = (toolbar) => {
+  toolbar = toolbar || []
+  const renderToolBarItem = (item,idx) => {
+    const Button = item?.button
+    const props = item?.props
+    return <ToolbarButton key={idx} {...props}><Button /></ToolbarButton>
+  }
+  return toolbar.map(renderToolBarItem)
+}
 
 const EzReactTable = ({
   data,
@@ -25,6 +35,7 @@ const EzReactTable = ({
   accentColor,
   darkMode,
   title,
+  toolbar
 }) => {
   const [searchInputProps, _data] = useSearchAction(cols, data);
   const [sort, setSort] = useState(
@@ -47,6 +58,7 @@ const EzReactTable = ({
     darkMode,
     title,
   };
+  const toolbarItems = useMemo(() => renderToolBar(toolbar), [])
   return (
     <Styled
       {...{
@@ -85,8 +97,9 @@ const EzReactTable = ({
               </button>
             </div>
           </div>
-          <div className="ezr-header-right">
-            <Refresh data={data} update={update} />
+          <div className="ezr-toolbar">
+            {toolbarItems}
+            {update &&  <Refresh data={data} update={update} />}
           </div>
         </div>
         <div className="ezr-body">
@@ -208,6 +221,7 @@ EzReactTable.defaultProps = {
   accentColor: "#b8b8b8",
   darkMode: false,
   title: null,
+  toolbar: [],
 };
 
 EzReactTable.propTypes = {
@@ -221,6 +235,7 @@ EzReactTable.propTypes = {
   accentColor: PropTypes.string,
   darkMode: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  toolbar: PropTypes.array,
 };
 
 export default EzReactTable;
