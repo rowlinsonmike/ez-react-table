@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import EzReactTable from "ez-react-table";
 
 import data from "./assets/todo.json";
 
 export default {
-  title: "todo app",
+  title: "ez-react-table",
   component: EzReactTable,
 };
 
@@ -92,4 +92,4 @@ const Template = (props) => {
   );
 };
 
-export const Demo = Template.bind({});
+export const TodoApp = Template.bind({});

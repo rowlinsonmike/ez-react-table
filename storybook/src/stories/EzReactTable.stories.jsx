@@ -53,8 +53,8 @@ const Template = (props) => {
   }} infiniteLoad={infiniteLoad} cols={cols} data={_data} {...props} />;
 };
 
-export const Demo = Template.bind({});
-Demo.args = {
+export const Playground = Template.bind({});
+Playground.args = {
   darkMode: false,
   accentColor: "#b8b8b8",
   rowHeight: 50,
