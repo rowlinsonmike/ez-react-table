@@ -247,6 +247,7 @@ const EzReactTable = ({
                                   width: `${cols[idx].width}px`,
                                 }}
                                 value={item[k]}
+                                original={item.__proto__[k]}
                               />
                             );
                           })}
