@@ -1,19 +1,19 @@
 import React from "react";
 import Styled from './styled'
-const Wrapper = (props) => <Styled className="ezr-title" {...props} />;
-export default function Title({ title }) {
-  if (!title) {
+const Wrapper = ({children}) => <Styled className="ezr-title">{children}</Styled>;
+export default function Title({ children }) {
+  if (!children) {
     return null;
   }
-  if (typeof title === "string") {
+  if (typeof children === "string") {
     return (
       <Wrapper>
-        <h2 className="ezr-title--text">{title}</h2>
+        <h2 className="ezr-title--text">{children}</h2>
       </Wrapper>
     );
   }
-  if (typeof title === "function") {
-    const TitleComponent = title;
+  if (typeof children === "function") {
+    const TitleComponent = children;
     return (
       <Wrapper>
         <TitleComponent />

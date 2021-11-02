@@ -175,11 +175,11 @@ export default styled.div`
   }
   .ezr-row {
     padding: 0 10px;
+    position: relative;
     &:hover {
       background: rgba(219, 219, 219, 50%);
       cursor: pointer;
     }
-
     display: flex;
     cursor: pointer;
     align-items: center;

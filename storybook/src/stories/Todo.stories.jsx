@@ -21,6 +21,15 @@ const Template = (props) => {
       button: () => <i style={{ color: "#06a847" }} className="las la-plus" />,
       props: { onClick: () => alert("Add logic here to create a todo!") },
     },
+    {
+      button: () => <i style={{ color: "#ff0374" }} className="las la-trash" />,
+      props: {
+        onClick: (data) => {
+          setData(_data.filter((d) => !data.find(item => item._id === d._id)));
+        },
+      },
+      selected: true,
+    },
   ];
   const cols = [
     { title: "Todo", width: 400, key: "todo" },
@@ -35,7 +44,7 @@ const Template = (props) => {
       width: 100,
       center: true,
       render: (value, object) => (
-        <div style={{display: 'flex'}}>
+        <div style={{ display: "flex" }}>
           <button
             style={{ background: "none", border: "none" }}
             onClick={() =>
@@ -56,11 +65,7 @@ const Template = (props) => {
           </button>
           <button
             style={{ background: "none", border: "none" }}
-            onClick={() =>
-              setData(
-                _data.filter((d) => d._id !== object._id))
-  
-            }
+            onClick={() => setData(_data.filter((d) => d._id !== object._id))}
           >
             <i
               style={{ fontSize: "1.3rem", color: "#ff0374" }}
@@ -80,10 +85,11 @@ const Template = (props) => {
       defaultSort="status"
       accentColor="#ff0374"
       tableHeight={300}
+      uid="_id"
+      selectable
       {...props}
     />
   );
 };
 
 export const Demo = Template.bind({});
-

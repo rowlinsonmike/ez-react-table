@@ -3,21 +3,23 @@
   <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/ez-react-table.png" width="150" title="logo">
 </p>
   <h1 align="center" >EZ React Table</h1>
-  <p align="center"><i>🔋 Batteries included table component that just works.</i></p>
+  <p align="center"><i>🔋 Batteries included table component that does it all!</i></p>
   <p align="center"><i>⚡️ Try out the <a href="https://rowlinsonmike.github.io/ez-react-table/?path=/story/ez-react-table--demo" target="_blank">Demo</a>! ⚡️</i></p>
+  <p align="center">🏗 <em>Active Development</em> 🛠</p>
 
 ## Features
 
 - 💻 virtualized rows
 - 🔽 built in sorting 
-- 🔃 built in refresh button
+- 🔃 refresh
 - 🕵 global search
-- 🤯 simple implementation 
+- 🤯 simple 
 - 🤩 beatuiful style
 - 🌔 dark mode
 - 🌊 overflow management with tool tips
 - ♾️ infinite loading
-- 🔨customizable toolbar 
+- 🔨customizable toolbar and actions 
+- ✅ selectable rows
   
 ## Screenshots
 
@@ -156,7 +158,9 @@ the toolbar property defines the available toolbar buttons. It takes an array of
 | :-------- |  :------------------------- |
 | `button` | React Component to render button, typically either an svg or font icon |
 | `props` | props to be passed to the button component, such as `onClick` property |
+| `select` | defaults to `false` if not passed. When `true` button appears when rows are selected |
 
+the `onClick` property supplied to the `props` object recieves an array argument when select property equals `true`. The array is a list of currently selected objects.
 
 ```javascript
 //example
@@ -164,6 +168,15 @@ the toolbar property defines the available toolbar buttons. It takes an array of
     {
       button: () => <i style={{ color: "#06a847" }} className="las la-plus" />,
       props: { onClick: () => alert("Add logic here to create a todo!") },
+    },
+    {
+      button: () => <i style={{ color: "#ff0374" }} className="las la-trash" />,
+      props: {
+        onClick: (data) => {
+          setData(_data.filter((d) => !data.find(item => item._id === d._id)));
+        },
+      },
+      selected: true,
     }
 ]
 ```

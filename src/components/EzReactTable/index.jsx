@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
@@ -13,16 +13,8 @@ import Sort from "../Sort";
 import RowCell from "../RowCell";
 import Refresh from "../Refresh";
 import Title from "../Title";
+import Checkbox from "../Checkbox";
 
-const renderToolBar = (toolbar) => {
-  toolbar = toolbar || []
-  const renderToolBarItem = (item,idx) => {
-    const Button = item?.button
-    const props = item?.props
-    return <ToolbarButton key={idx} {...props}><Button /></ToolbarButton>
-  }
-  return toolbar.map(renderToolBarItem)
-}
 
 const EzReactTable = ({
   data,
@@ -35,7 +27,9 @@ const EzReactTable = ({
   accentColor,
   darkMode,
   title,
-  toolbar
+  toolbar,
+  selectable,
+  uid,
 }) => {
   const [searchInputProps, _data] = useSearchAction(cols, data);
   const [sort, setSort] = useState(
@@ -45,7 +39,49 @@ const EzReactTable = ({
   useEffect(() => {
     setLoad(false);
   }, [data]);
-  let _dataset = sortData(_data, sort, setSort);
+  let _dataset = useMemo(() => sortData(_data, sort, setSort),[sort,_data]);
+  const [selected, setSelected] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const renderToolBar = (toolbar) => {
+    toolbar = toolbar || [];
+    const renderToolBarItem = (item, idx) => {
+      const Button = item?.button;
+      let props = item?.props;
+      const useSelected = item?.selected
+      if(useSelected){
+        if(!selected.length){
+          return null
+        }
+        if(props?.onClick){
+          props = {...props, onClick: () => {
+            item.props.onClick(selected)
+            clearSelection()
+          }}
+        }
+      }
+      return (
+        <ToolbarButton key={idx} {...props}>
+          <Button />
+        </ToolbarButton>
+      );
+    };
+    return toolbar.map(renderToolBarItem);
+  };
+  const addToSelection = (item) => {
+    setSelected([...selected, item]);
+  };
+  const clearSelection = () => {
+    setSelectAll(false)
+    setSelected([]);
+  };
+  const addAllToSelection = () => {
+    setSelectAll(true)
+    setSelected([..._dataset]);
+  };
+  const removeFromSelection = (item) => {
+    setSelected(selected.filter((s) => s[uid] !== item[uid]));
+  };
+
   const passedProps = {
     data,
     cols,
@@ -57,8 +93,10 @@ const EzReactTable = ({
     accentColor,
     darkMode,
     title,
+    selectable,
+    uid,
   };
-  const toolbarItems = useMemo(() => renderToolBar(toolbar), [])
+  const toolbarItems = useMemo(() => renderToolBar(toolbar), [selected]);
   return (
     <Styled
       {...{
@@ -67,7 +105,7 @@ const EzReactTable = ({
       }}
     >
       <div className="ezr-table">
-        <Title title={title} />
+        <Title>{title}</Title>
         <div className="ezr-header">
           <div className="ezr-header-left">
             <div className="ezr-search">
@@ -99,11 +137,19 @@ const EzReactTable = ({
           </div>
           <div className="ezr-toolbar">
             {toolbarItems}
-            {update &&  <Refresh data={data} update={update} />}
+            {update && <Refresh data={data} update={update} />}
           </div>
         </div>
         <div className="ezr-body">
           <div className="ezr-col-header">
+            {selectable && (
+              <Checkbox
+                checked={selectAll}
+                onChecked={addAllToSelection}
+                onUnchecked={clearSelection}
+                accentColor={accentColor}
+              />
+            )}
             {cols.map((c, idx) => {
               return (
                 <div
@@ -174,9 +220,21 @@ const EzReactTable = ({
                       return (
                         <div
                           style={{ ...style }}
-                          key={index}
+                          key={uid ? item.__proto__[uid] : index}
                           className="ezr-row"
                         >
+                          {selectable && (
+                            <Checkbox
+                              checked={selected.find(
+                                (s) => s[uid] === item.__proto__[uid]
+                              )}
+                              onChecked={() => addToSelection(item.__proto__)}
+                              onUnchecked={() =>
+                                removeFromSelection(item.__proto__)
+                              }
+                              accentColor={accentColor}
+                            />
+                          )}
                           {Object.keys(item).map((k, idx) => {
                             let textAlign = cols[idx]?.center
                               ? "center"
@@ -222,6 +280,8 @@ EzReactTable.defaultProps = {
   darkMode: false,
   title: null,
   toolbar: [],
+  selectable: false,
+  uid: null,
 };
 
 EzReactTable.propTypes = {
@@ -236,6 +296,8 @@ EzReactTable.propTypes = {
   darkMode: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   toolbar: PropTypes.array,
+  selectable: PropTypes.bool,
+  uid: PropTypes.string,
 };
 
 export default EzReactTable;
