@@ -149,6 +149,8 @@ function App() {
 | `darkMode` | `bool` | `false` | toggle dark mode, default is false |
 | `title` | `func or string` | `null` | create title for table, can be either a string or a component |
 | `toolbar` | `array` | `[]` | define buttons for toolbar |
+| `selectable` | `boolean` | `false` | when true, allow selection of rows |
+| `uid` | `string` | `null` | **required** if selectable it `true`, key of unique property on objects in data |
 
 ### Component `toolbar` property
 
