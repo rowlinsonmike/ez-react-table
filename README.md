@@ -218,6 +218,7 @@ function that updates passed `data` prop to EzReactTable
 ```javascript
 (value,object) => <div>{value}</div>
 ```
+  
 
 ## Acknowledgements
 

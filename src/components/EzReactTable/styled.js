@@ -46,6 +46,7 @@ export default styled.div`
     border-radius: 7px;
     width: ${({ tableWidth }) => tableWidth}px;
     min-width: 300px;
+    max-width: 100%;
     background-color: ${({ darkMode }) => getColor(darkMode).bg};
   }
   .ezr-title {
