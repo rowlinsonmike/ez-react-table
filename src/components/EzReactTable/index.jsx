@@ -156,7 +156,7 @@ const EzReactTable = ({
                   key={idx}
                   style={{
                     height: `${rowHeight}px`,
-                    width: `${c.width}px`,
+                    width: `${c.width}`,
                   }}
                   className="ezr-col-header-cell"
                   onClick={() => {
@@ -244,7 +244,7 @@ const EzReactTable = ({
                                 key={idx}
                                 style={{
                                   textAlign,
-                                  width: `${cols[idx].width}px`,
+                                  width: `${cols[idx].width}`,
                                 }}
                                 value={item[k]}
                                 original={item.__proto__[k]}

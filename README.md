@@ -49,12 +49,12 @@ function App() {
           cols={[
             {
               title: "First",
-              width: 200,
+              width: "200px",
               key: "first",
             },
             {
               title: "Last",
-              width: 200,
+              width: "200px",
               key: "last",
             }
           ]}
@@ -86,17 +86,17 @@ const data = Array.from(Array(20))
 const cols = [
   {
     title: "First",
-    width: 200,
+    width: "200px",
     key: "first",
   },
   {
     title: "Last",
-    width: 200,
+    width: "200px",
     key: "last",
   },
   {
     title: "Actions",
-    width: 100,
+    width: "100px",
     key: "action",
     center: true,
     render: (value, object) => (
@@ -202,7 +202,7 @@ function that updates passed `data` prop to EzReactTable
 | Property | Type     | Description                |
 | :-------- | :------- |  :------------------------- |
 | `title` | `string` | column display name |
-| `width` | `number` | width of column in pixels |
+| `width` | `string` | width of column (100px, 30%) |
 | `center` | `boolean` | aligns column content to center |
 | `key` | `string` | correlated property name in data object |
 | `render` | `function` | render customer component |
