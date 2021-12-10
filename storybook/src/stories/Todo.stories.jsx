@@ -32,16 +32,16 @@ const Template = (props) => {
     },
   ];
   const cols = [
-    { title: "Todo", width: 400, key: "todo" },
+    { title: "Todo", width: '400px', key: "todo" },
     {
       title: "Status",
-      width: 100,
+      width: '100px',
       key: "status",
       center: true,
       render: (value, object) => <span>{value ? "🎉" : "➖"}</span>,
     },
     {
-      width: 100,
+      width: '100px',
       center: true,
       render: (value, object) => (
         <div style={{ display: "flex" }}>

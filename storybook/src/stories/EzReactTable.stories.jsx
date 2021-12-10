@@ -3,9 +3,9 @@ import EzReactTable from "ez-react-table";
 
 import data from "./assets/data.json";
 const cols = [
-  { title: "Name", width: 200, key: "name" },
-  { title: "Email", width: 200, key: "email" },
-  { title: "Website", width: 200, key: "website" },
+  { title: "Name", width: '200px', key: "name" },
+  { title: "Email", width: '200px', key: "email" },
+  { title: "Website", width: '200px', key: "website" },
 ];
 
 export default {
