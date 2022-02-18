@@ -23,8 +23,6 @@ var _simplebarReact = _interopRequireDefault(require("simplebar-react"));
 
 require("simplebar/dist/simplebar.min.css");
 
-require("./styles.css");
-
 var _tippy = _interopRequireDefault(require("tippy.js"));
 
 require("tippy.js/dist/tippy.css");
@@ -291,7 +289,7 @@ function EzReactTable(_ref4) {
     cols,
     data,
     rowHeight = 30,
-    showCols = 3,
+    showCols = cols.length,
     tableHeight = 500,
     toolbar: Toolbar,
     selectable = null,
@@ -448,6 +446,10 @@ function EzReactTable(_ref4) {
   let Title = (0, _react.useMemo)(() => {
     return typeof title === "function" ? title() : title;
   }, []);
+  Toolbar = !Toolbar ? null : /*#__PURE__*/_react.default.createElement(Toolbar, {
+    selected: selectedItems,
+    clearSelected: unSelectAll
+  });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "ezrt",
     style: {
@@ -473,10 +475,7 @@ function EzReactTable(_ref4) {
     className: "ezrt-head--search-x"
   }, "\u2715")), /*#__PURE__*/_react.default.createElement("div", {
     className: "ezrt-head--tools"
-  }, /*#__PURE__*/_react.default.createElement(Toolbar, {
-    selected: selectedItems,
-    clearSelected: unSelectAll
-  })))), /*#__PURE__*/_react.default.createElement("div", {
+  }, Toolbar))), /*#__PURE__*/_react.default.createElement("div", {
     className: "ezrt-body"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "ezrt-headers"
