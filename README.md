@@ -1,70 +1,235 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/ez-react-table.png" width="150" title="logo">
+</p>
+  <h1 align="center" >EZ React Table</h1>
+  <p align="center"><i>🔋 Batteries included table component that does it all!</i></p>
+  <p align="center"><i>⚡️ Try out the <a href="https://rowlinsonmike.github.io/ez-react-table/?path=/story/ez-react-table--demo" target="_blank">Demo</a>! ⚡️</i></p>
+  <p align="center">🏗 <em>Active Development</em> 🛠</p>
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 💻 virtualized rows
+- 🔽 built in sorting 
+- 🔃 refresh
+- 🕵 global search
+- 🤯 simple 
+- 🤩 beatuiful style
+- 🌔 dark mode
+- 🌊 overflow management with tool tips
+- ♾️ infinite loading
+- 🔨customizable toolbar and actions 
+- ✅ selectable rows
+  
+## Screenshots
 
-### `npm start`
+<p float="left">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot-1.png" width="350" title="screenshot 1">
+  <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot-2.png" width="350" title="screenshot 2">
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install ez-react-table with npm
 
-### `npm test`
+```bash
+  npm install ez-react-table
+```
+    
+## Usage/Examples
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Simple 
+```javascript
+import EzReactTable from "ez-react-table";
 
-### `npm run build`
+function App() {
+  return <div>
+    <EzReactTable
+          cols={[
+            {
+              title: "First",
+              width: "200px",
+              key: "first",
+            },
+            {
+              title: "Last",
+              width: "200px",
+              key: "last",
+            }
+          ]}
+          data={[
+            { first: "Michael", last: "Myers" },
+            { first: "Laurie", last: "Strode" },
+            { first: "Samuel", last: "Loomis" },
+          ]}
+        />
+  </div>
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Kitchen Sink
+```javascript
+import { useState } from "react";
+import EzReactTable from "ez-react-table";
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+// fake data
+const data = Array.from(Array(20))
+  .map((i) => [
+    { first: "Michael", last: "Myers" },
+    { first: "Laurie", last: "Strode" },
+    { first: "Samuel", last: "Loomis" },
+  ])
+  .reduce((a, c) => [...a, ...c], []);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+// define columns
+const cols = [
+  {
+    title: "First",
+    width: "200px",
+    key: "first",
+  },
+  {
+    title: "Last",
+    width: "200px",
+    key: "last",
+  },
+  {
+    title: "Actions",
+    width: "100px",
+    key: "action",
+    center: true,
+    render: (value, object) => (
+      <button onClick={() => alert(JSON.stringify(object))}>View</button>
+    ),
+  },
+];
 
-### `npm run eject`
+function App() {
+  const [_data, setData] = useState(data);
+  const update = async () => {
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve();
+      }, 2000)
+    );
+    setData([..._data, { first: "Leigh", last: "Brackett" }]);
+  };
+  return (
+    <div className="App">
+      <EzReactTable
+        tableHeight={500}
+        rowHeight={40}
+        defaultSort="first"
+        accentColor="#edaf1f"
+        update={update}
+        darkMode
+        cols={cols}
+        data={_data}
+      />
+    </div>
+  );
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Configuration
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Component properties
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Property | Type     | Default | Description                |
+| :-------- | :------- | :-------- |  :------------------------- |
+| `cols` | `array` | `[]` | column configuration |
+| `data` | `array` | `[]` | data to render |
+| `rowHeight` | `number` | `50` | height of rows in pixels |
+| `tableHeight` | `number` | `300` | height of table in pixels |
+| `update` | `function` | `null` | function call to update data |
+| `infiniteLoad` | `function` | `null` | function call to load more items |
+| `defaultSort` | `string` | `null` | default column sort |
+| `accentColor` | `string` | `#b8b8b8` | color for table accents |
+| `darkMode` | `bool` | `false` | toggle dark mode, default is false |
+| `title` | `func or string` | `null` | create title for table, can be either a string or a component |
+| `toolbar` | `array` | `[]` | define buttons for toolbar |
+| `selectable` | `boolean` | `false` | when true, allow selection of rows |
+| `uid` | `string` | `null` | **required** if selectable it `true`, key of unique property on objects in data |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Component `toolbar` property
 
-## Learn More
+the toolbar property defines the available toolbar buttons. It takes an array of objects, each object has the following properties:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Property | Description                |
+| :-------- |  :------------------------- |
+| `button` | React Component to render button, typically either an svg or font icon |
+| `props` | props to be passed to the button component, such as `onClick` property |
+| `select` | defaults to `false` if not passed. When `true` button appears when rows are selected |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+the `onClick` property supplied to the `props` object recieves an array argument when select property equals `true`. The array is a list of currently selected objects.
 
-### Code Splitting
+```javascript
+//example
+[
+    {
+      button: () => <i style={{ color: "#06a847" }} className="las la-plus" />,
+      props: { onClick: () => alert("Add logic here to create a todo!") },
+    },
+    {
+      button: () => <i style={{ color: "#ff0374" }} className="las la-trash" />,
+      props: {
+        onClick: (data) => {
+          setData(_data.filter((d) => !data.find(item => item._id === d._id)));
+        },
+      },
+      selected: true,
+    }
+]
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Component `infiniteLoad` function
 
-### Analyzing the Bundle Size
+| Argument | Description                |
+| :-------- |  :------------------------- |
+| `visibleStopIndex` | index of last loaded item |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+function that updates passed `data` prop to EzReactTable with more data
 
-### Making a Progressive Web App
+```javascript
+(visibleStopIndex) => {...}
+```
+### Component `update` function
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+function that updates passed `data` prop to EzReactTable
 
-### Advanced Configuration
+### Column Configuration
+| Property | Type     | Description                |
+| :-------- | :------- |  :------------------------- |
+| `title` | `string` | column display name |
+| `width` | `string` | width of column (100px, 30%) |
+| `center` | `boolean` | aligns column content to center |
+| `key` | `string` | correlated property name in data object |
+| `render` | `function` | render customer component |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Column Configuration `render` function
 
-### Deployment
+| Argument | Description                |
+| :-------- |  :------------------------- |
+| `value` | value to render in column |
+| `object` | row's object |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+```javascript
+(value,object) => <div>{value}</div>
+```
+  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgements
+
+ - [react-window](https://github.com/bvaughn/react-window)
+ - [simple-bar](https://github.com/Grsmto/simplebar/tree/master/packages/simplebar-react)
+ - [tippy.js](https://github.com/atomiks/tippyjs)
+ - [styled components](https://github.com/styled-components/styled-components)
+  
+## Authors
+
+- [@rowlinsonmike](https://www.github.com/rowlinsonmike)
+
+  
+Copied
