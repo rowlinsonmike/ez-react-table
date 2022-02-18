@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=Toolbar;var _react=_interopRequireDefault(require("react")),_ToolbarButton=_interopRequireDefault(require("./ToolbarButton"));function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}function Toolbar(){return/*#__PURE__*/_react["default"].createElement("div",null)}

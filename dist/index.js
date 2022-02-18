@@ -1,1 +1,13 @@
-"use strict";var _EzReactTable=_interopRequireDefault(require("./components/EzReactTable"));Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=void 0;function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}var _default=_EzReactTable["default"];exports["default"]=_default;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _lib = _interopRequireDefault(require("./lib"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _lib.default;
+exports.default = _default;

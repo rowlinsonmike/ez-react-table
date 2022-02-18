@@ -1,0 +1,128 @@
+.ezrt {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.ezrt-head{
+    padding: 10px;
+}
+.ezrt-headers--select{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+/* toolbar area */
+.ezrt-head--tools{
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.resize-handle {
+    cursor: col-resize;
+    background-color: #eee;
+}
+.resize-handle:hover {
+background-color: #ccc;
+}
+.resize-handle.active {
+background-color: #517ea5;
+}
+.eztr-rows--virtual{
+    overflow: hidden;
+}
+.ezrt-row--cell {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* checkbox */
+.ezrt-checkbox .form-control {
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+  }
+
+.ezrt-checkbox .form-control + .form-control {
+    margin-top: 1em;
+  }
+
+.ezrt-checkbox input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: transparent;
+    /* Not removed via appearance */
+    margin: 0;
+
+    font: inherit;
+    color: grey;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid grey;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+  }
+
+.ezrt-checkbox input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em grey;
+    /* Windows High Contrast Mode */
+    background-color: CanvasText;
+  }
+
+.ezrt-checkbox input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+.ezrt-checkbox input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid grey;
+    outline-offset: max(2px, 0.15em);
+  }
+/* search input */
+.ezrt-head--search{
+    border: 1px solid #eee;
+    width: 40%;
+    min-width: 200px;
+    position: relative;
+    padding: 5px;
+    margin-top: 15px;
+}
+.ezrt-head--search input{
+    border: none;
+    outline: none;
+    width: 100%;
+
+}
+.ezrt-head--search-x{
+position: absolute;
+right: 5px;
+top: 5px;
+cursor: pointer;
+}
+.ezrt-body{
+  padding: 0 10px;
+}
+.ezrt-footer{
+    padding: 10px;
+    display: flex;
+    border-top: 1px solid #eee;
+    justify-content: center;
+    align-items: center;
+}
