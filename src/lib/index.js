@@ -9,7 +9,7 @@ import React, {
 import { FixedSizeList as List } from "react-window";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
-import "./styles.css";
+// import "./styles.css";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -248,7 +248,7 @@ export default function EzReactTable({
   cols,
   data,
   rowHeight = 30,
-  showCols = 3,
+  showCols = cols.length,
   tableHeight = 500,
   toolbar: Toolbar,
   selectable = null,
@@ -405,6 +405,9 @@ export default function EzReactTable({
   let Title = useMemo(() => {
     return typeof title === "function" ? title() : title;
   }, []);
+  Toolbar = !Toolbar ? null : (
+    <Toolbar selected={selectedItems} clearSelected={unSelectAll} />
+  );
   return (
     <div className="ezrt" style={{ width: "100%" }}>
       <div className="ezrt-head">
@@ -428,9 +431,7 @@ export default function EzReactTable({
               </span>
             )}
           </div>
-          <div className="ezrt-head--tools">
-            <Toolbar selected={selectedItems} clearSelected={unSelectAll} />
-          </div>
+          <div className="ezrt-head--tools">{Toolbar}</div>
         </div>
       </div>
       <div className="ezrt-body">

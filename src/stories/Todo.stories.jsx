@@ -1,4 +1,5 @@
 import EzReactTable from "../lib";
+import "../lib/styles.css"
 import React,{useState,useCallback} from "react";
 
 const Template = (args) => <EzReactTable {...args} />;
