@@ -1,6 +1,6 @@
-<p align="center">
+<!-- <p align="center">
   <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/ez-react-table.png" width="150" title="logo">
-</p>
+</p> -->
   <h1 align="center" >EZ React Table</h1>
   <p align="center"><i>🔋 Batteries included table component that does it all!</i></p>
   <p align="center"><i>⚡️ Try out the <a href="https://rowlinsonmike.github.io/ez-react-table/" target="_blank">Demo</a>! ⚡️</i></p>
@@ -17,12 +17,12 @@
 - 🔨customizable toolbar
 - ✅ selectable rows
 
-## Screenshots
+<!-- ## Screenshots
 
 <p float="left">
   <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot-1.png" width="350" title="screenshot 1">
   <img src="https://github.com/rowlinsonmike/ez-react-table/blob/main/assets/screenshot-2.png" width="350" title="screenshot 2">
-</p>
+</p> -->
 
 ## Installation
 
