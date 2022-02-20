@@ -138,7 +138,7 @@ function sortData(col, asc, dataset) {
 const CheckBox = ({ checked, onChecked, onUnChecked }) => {
   return (
     <div className="ezrt-checkbox">
-      <label className="form-control">
+      <label className="ezrt-checkbox--form-control">
         <input
           checked={checked}
           onChange={(e) => {
@@ -217,18 +217,16 @@ const Header = ({
   return (
     <div
       ref={headerRef}
-      onClick={handleSortSelect}
       style={{
         height: rowHeight,
         display: "flex",
         justifyContent: "space-between",
-        padding: "0 5px",
         position: "relative",
         cursor: "pointer",
       }}
       className="ezrt-headers--cell"
     >
-      <span>{value}</span>
+      <span onClick={handleSortSelect}>{value}</span>
       <Sort />
       <span
         onMouseDown={onMouseDownHandler}
@@ -369,6 +367,7 @@ export default function EzReactTable({
     if (startIndex - 1 >= 0) {
       setStartIndex(startIndex - 1);
       setGridTemplateColumns(defaultGridTemplateColumn);
+      setSort(null);
     }
   };
   const nextColumn = () => {
@@ -377,6 +376,7 @@ export default function EzReactTable({
     ) {
       setGridTemplateColumns(defaultGridTemplateColumn);
       setStartIndex(startIndex + 1);
+      setSort(null);
     }
   };
   const resetColumn = () => {
@@ -391,7 +391,7 @@ export default function EzReactTable({
   let sorted = useMemo(() => {
     try {
       if (sort) {
-        return sortData(cols[sort[0]], sort[1], dataset);
+        return sortData(activeCols[sort[0]], sort[1], dataset);
       } else {
         return dataset;
       }
@@ -415,6 +415,7 @@ export default function EzReactTable({
         <div className="ezrt-head--options">
           <div className="ezrt-head--search">
             <input
+              className="ezrt-head--search-input"
               ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}

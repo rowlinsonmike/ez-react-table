@@ -37,8 +37,8 @@ Install ez-react-table with npm
 Simple
 
 ```javascript
-import EzReactTable from "ez-react-table";
-import "ez-react-table/lib/styles.css"
+import { EzReactTable } from "ez-react-table";
+import "ez-react-table/lib/styles.css";
 
 function App() {
   return (

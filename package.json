@@ -1,6 +1,6 @@
 {
   "name": "ez-react-table",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Michael Rowlinson",
   "description": "easy react table that just works",
   "homepage": "http://rowlinsonmike.github.io/ez-react-table",
@@ -36,6 +36,7 @@
     "start": "react-scripts start",
     "babel": "rm -rf dist && mkdir dist &&  babel src/index.js -d dist --copy-files",
     "build": "webpack",
+    "publish": "npm run publish",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",

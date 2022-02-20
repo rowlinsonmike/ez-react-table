@@ -12,6 +12,8 @@ export default {
 export const Simple = () => {
     return (<div style={{ width: "80%", position: 'relative'}}>
       <Template
+      tableHeight={200}
+      rowHeight={40}
         cols={[
           {
             title: "First",
