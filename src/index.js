@@ -1,2 +1,1 @@
-import EzReactTable from "./lib";
-export default EzReactTable;
+export { default as EzReactTable } from "./EzReactTable";

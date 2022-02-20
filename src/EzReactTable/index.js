@@ -226,7 +226,7 @@ const Header = ({
         position: "relative",
         cursor: "pointer",
       }}
-      className="ezr-headers--cell"
+      className="ezrt-headers--cell"
     >
       <span>{value}</span>
       <Sort />
@@ -439,15 +439,15 @@ export default function EzReactTable({
           <div className="ezrt-headers--select">
             {showCols < cols.length && (
               <span onClick={prevColumn}>
-                <LeftArrowSvg fill="#d3d3d3" height="10px" />
+                <LeftArrowSvg id="ezrt-col-paginate--left" />
               </span>
             )}
             <span onClick={resetColumn}>
-              <ResetSvg fill="#d3d3d3" height="10px" />
+              <ResetSvg id="ezrt-col-paginate--reset" />
             </span>
             {showCols < cols.length && (
               <span onClick={nextColumn}>
-                <RightArrowSvg fill="#d3d3d3" height="10px" />
+                <RightArrowSvg id="ezrt-col-paginate--right" />
               </span>
             )}
           </div>
@@ -467,7 +467,7 @@ export default function EzReactTable({
                   justifyContent: "center",
                   padding: "0 5px",
                 }}
-                className="ezr-headers--cell"
+                className="ezrt-headers--cell"
               >
                 <CheckBox
                   checked={
@@ -493,6 +493,7 @@ export default function EzReactTable({
                   sort={() =>
                     sort && idx === sort[0] ? (
                       <SortSvg
+                        id="ezrt-headers--cell-sort"
                         style={{
                           position: "absolute",
                           right: "5px",
@@ -500,8 +501,6 @@ export default function EzReactTable({
                             sort[1] === 1 ? "180" : "0"
                           }deg)`,
                         }}
-                        height="12px"
-                        fill="#d3d3d3"
                       />
                     ) : null
                   }

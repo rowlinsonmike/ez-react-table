@@ -12,6 +12,13 @@
     padding-right: 10px;
     padding-bottom: 10px;
 }
+/* svgs */
+#ezrt-col-paginate--right,#ezrt-col-paginate--reset,#ezrt-col-paginate--left,#ezrt-headers--cell-sort{
+  fill: #d3d3d3;
+  height: 12px;
+  padding: 0 3px;
+}
+
 /* toolbar area */
 .ezrt-head--tools{
   margin: 10px 0;
