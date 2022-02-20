@@ -110,6 +110,23 @@ the toolbar component recieves 2 properties defined below
 (value, object) => <span>{value}</span>;
 ```
 
+## Styles
+
+Apply default styles
+
+```css
+import { EzReactTable } from "ez-react-table";
+import "ez-react-table/lib/main.css";
+import "ez-react-table/lib/styles.css";
+```
+
+For custom styles, copy `ez-react-table/lib/styles.css` and modify as needed.
+```css
+import { EzReactTable } from "ez-react-table";
+import "ez-react-table/lib/main.css";
+import "./styles.css";
+```
+
 ## Acknowledgements
 
 - [react-window](https://github.com/bvaughn/react-window)
