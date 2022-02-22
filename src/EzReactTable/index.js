@@ -316,9 +316,10 @@ export default function EzReactTable({
   const mouseMove = useCallback(
     (e) => {
       const gridColumns = refs.current.map((col, i) => {
+        console.log(e, col);
         if (i === activeIndex) {
           // Calculate the column width
-          const width = e.clientX - col.current.offsetLeft;
+          const width = e.pageX - 15 - col.current.offsetLeft;
           if (width < col.current.children[0].offsetWidth + 30) {
             return `${col.current.children[0].offsetWidth + 30}px`;
           }
@@ -602,7 +603,7 @@ export default function EzReactTable({
           <div className="ezrt-count">
             {selectable && selected.length
               ? `${selected.length} items selected out of ${data.length}`
-              : `${data.length}`}
+              : `${dataset.length}`}
           </div>
         </div>
       </div>
