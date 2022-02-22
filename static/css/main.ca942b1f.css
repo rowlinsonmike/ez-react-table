@@ -143,6 +143,10 @@
 /* header cell */
 .ezrt-headers--cell{
   padding: 0 5px;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */ /* Konqueror HTML */ /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently */
 }
 /* resize columns classes */
 .resize-handle {
@@ -182,4 +186,4 @@ background-color: #517ea5;
   color: grey;
 }
 
-/*# sourceMappingURL=main.d29a4fd6.css.map*/
+/*# sourceMappingURL=main.ca942b1f.css.map*/
