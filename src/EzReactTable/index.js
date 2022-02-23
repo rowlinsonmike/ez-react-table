@@ -9,7 +9,6 @@ import React, {
 import { FixedSizeList as List } from "react-window";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
-// import "./styles.css";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -85,6 +84,12 @@ function useDebounce(fn, ms = 0, deps = []) {
 function sortData(col, asc, dataset) {
   let key = col.key;
   let dataType = typeof dataset[0][key];
+  //account for numbers that are strings
+  if (dataType === "string") {
+    if (Number(dataset[0][key])) {
+      dataType = "number";
+    }
+  }
   let result = dataset;
 
   if (dataType === "string") {
@@ -158,10 +163,12 @@ const CheckBox = ({ checked, onChecked, onUnChecked }) => {
 
 const Cell = ({ children: value, rowHeight, format, justify, item }) => {
   const overflowRef = useOverflowAction((ref) => {
-    tippy(ref.current, {
-      animation: "scale",
-      placement: "top-start",
-    });
+    if (typeof value === "string" || typeof value === "number") {
+      tippy(ref.current, {
+        animation: "scale",
+        placement: "top-start",
+      });
+    }
   });
   let tipOptions = {};
   if (typeof value === "string" || typeof value === "number") {
@@ -291,7 +298,9 @@ export default function EzReactTable({
   useDebounce(
     () => {
       if (query) {
-        let datum = data.filter((d) => JSON.stringify(d).includes(query));
+        let datum = data.filter((d) =>
+          JSON.stringify(d).toLowerCase().includes(query)
+        );
         setDataset(datum.length ? datum : []);
       } else {
         setDataset(data);
@@ -316,14 +325,25 @@ export default function EzReactTable({
   const mouseMove = useCallback(
     (e) => {
       const gridColumns = refs.current.map((col, i) => {
-        console.log(e, col);
         if (i === activeIndex) {
+          // Calculate the desired width
+          const horizontalScrollOffset = document.documentElement.scrollLeft;
+          const width =
+            horizontalScrollOffset + e.clientX - col.current.offsetLeft;
+          const min = col.current.children[0].offsetWidth + 30;
+          return Math.max(min, width) + "px";
+          // Update the column object with the new size value
+          // const column = columns.find(({ header }) => header === headerBeingResized);
+          // column.size = Math.max(min, width) + 'px'; // Enforce our minimum
           // Calculate the column width
-          const width = e.pageX - 15 - col.current.offsetLeft;
-          if (width < col.current.children[0].offsetWidth + 30) {
-            return `${col.current.children[0].offsetWidth + 30}px`;
-          }
-          return `${width}px`;
+          // if (col.current.offsetLeft <= 0) {
+          //   return `${width}px`;
+          // }
+          // const width = e.offsetWidth - 15 - col.current.offsetLeft;
+          // if (width < col.current.children[0].offsetWidth + 30 && width > 0) {
+          //   return `${col.current.children[0].offsetWidth + 30}px`;
+          // }
+          // return `${width}px`;
         }
         return `${col.current.offsetWidth}px`;
       });
