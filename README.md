@@ -79,6 +79,7 @@ function App() {
 | `title`        | `Component or string` | `null`    | create title for table, can be either a string or a react component                   |
 | `toolbar`      | `Component`          | `null`      | react component to pass as toolbar                                                   |
 | `selectable`   | `string`        | `null`   | defining makes rows selectable, pass column key to use as unique identifier.                                             |
+| `initialSelected`   | `array`        | `[]`   | array of of ids that should be checked on component load. The array contains the values of the property specified in `selectable`                                           |
 
 ### Component `toolbar` property
 

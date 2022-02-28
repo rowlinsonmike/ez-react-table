@@ -257,6 +257,7 @@ export default function EzReactTable({
   tableHeight = 500,
   toolbar: Toolbar,
   selectable = null,
+  initialSelected = [],
   title,
 }) {
   const defaultGridTemplateColumn = selectable
@@ -265,7 +266,7 @@ export default function EzReactTable({
   const parentRef = useRef();
   const inputRef = useRef();
   const windowRef = useRef();
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(initialSelected);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState(null);
   const [dataset, setDataset] = useState(data);
