@@ -91,6 +91,7 @@ export const Todo = () => {
         data={todos}
         selectable="id"
         initialSelected={[2]}
+        onSelect={(selected) => selected.length === todos.length && alert("All items selected!") }
         cols={[
           { title: "Todo", key: "todo" },
           {

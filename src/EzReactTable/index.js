@@ -258,6 +258,7 @@ export default function EzReactTable({
   toolbar: Toolbar,
   selectable = null,
   initialSelected = [],
+  onSelect = null,
   title,
 }) {
   const defaultGridTemplateColumn = selectable
@@ -372,17 +373,38 @@ export default function EzReactTable({
     };
   }, [activeIndex, mouseMove, mouseUp, removeListeners]);
   // selection
+  const passedSelectHandler = useMemo(() => {
+    if (!onSelect) {
+      return null;
+    }
+    return (params) => setTimeout(() => onSelect(params), 1);
+  }, [onSelect]);
   const selectAll = () => {
-    setSelected(dataset.map((d) => d[selectable]));
+    let update = dataset.map((d) => d[selectable]);
+    setSelected(update);
+    if (passedSelectHandler) {
+      passedSelectHandler(update);
+    }
   };
   const unSelectAll = () => {
     setSelected([]);
+    if (passedSelectHandler) {
+      passedSelectHandler([]);
+    }
   };
   const selectOne = (idx) => {
-    setSelected([...selected, idx]);
+    let update = [...selected, idx];
+    setSelected(update);
+    if (passedSelectHandler) {
+      passedSelectHandler(update);
+    }
   };
   const unselectOne = (idx) => {
-    setSelected(selected.filter((s) => s !== idx));
+    const update = selected.filter((s) => s !== idx);
+    setSelected(update);
+    if (passedSelectHandler) {
+      passedSelectHandler(update);
+    }
   };
   //column pagination
   const prevColumn = () => {

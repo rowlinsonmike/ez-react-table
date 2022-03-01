@@ -80,6 +80,7 @@ function App() {
 | `toolbar`      | `Component`          | `null`      | react component to pass as toolbar                                                   |
 | `selectable`   | `string`        | `null`   | defining makes rows selectable, pass column key to use as unique identifier.                                             |
 | `initialSelected`   | `array`        | `[]`   | array of of ids that should be checked on component load. The array contains the values of the property specified in `selectable`                                           |
+| `onSelect`   | `function`        | `null`   | function that runs when selections occur. the function will get passed the current selection array                                          |
 
 ### Component `toolbar` property
 
